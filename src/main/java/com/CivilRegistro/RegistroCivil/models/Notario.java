@@ -6,22 +6,22 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "notarios")
 public class Notario {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private String notarioId;
+    private Long notarioId;
+
     private String nombres;
     private String direccionNotaria;
 
     @OneToMany (mappedBy = "fkNotario")
     private List<Registro> registros;
 
-    public String getNotarioId() {
+    public Long getNotarioId() {
         return notarioId;
     }
 
-    public void setNotarioId(String notarioId) {
+    public void setNotarioId(Long notarioId) {
         this.notarioId = notarioId;
     }
 

@@ -7,11 +7,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "DNI")
 public class DNI {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String dniId;
+    private Long dniId;
+
     private String estadoCivil;
     private String cedula;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -28,12 +28,11 @@ public class DNI {
     @OneToMany (mappedBy = "fkDni")
     private List<Registro> registros;
 
-
-    public String getDniId() {
+    public Long getDniId() {
         return dniId;
     }
 
-    public void setDniId(String dniId) {
+    public void setDniId(Long dniId) {
         this.dniId = dniId;
     }
 
