@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="Tciudadano")
+@Table(name="ciudadano")
 public class Ciudadano {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
