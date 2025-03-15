@@ -1,0 +1,4 @@
+package com.CivilRegistro.RegistroCivil.repository;
+
+public interface UserRepository {
+}
