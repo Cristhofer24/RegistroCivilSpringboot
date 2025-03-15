@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -22,17 +23,47 @@ public class DNIController {
     private CiudadanoService ciudadanoService;
 
     @GetMapping
-    public String registroDNI(Model model) {
-        List<Ciudadano> ciudadanos = ciudadanoService.obtenerTodos();
-        model.addAttribute("ciudadanos", ciudadanos);
-        model.addAttribute("dni", new DNI());
+    public String registroDNI(@ModelAttribute("idCiudadano") Long idCiudadano, Model model) {
+        if (idCiudadano != null) {
+            // Busca el ciudadano usando el ID
+            Ciudadano ciudadano = ciudadanoService.obtenerPorId(idCiudadano);
+
+            // Crea un objeto DNI
+            DNI dni = new DNI();
+
+            // Generar cédula aleatoria de 10 dígitos
+            String cedula = dniService.generateRandomCedula();
+            dni.setCedula(cedula);
+
+            // Establecer la fecha de emisión a la fecha actual
+            LocalDate fechaEmision = LocalDate.now();
+            dni.setFechaemision(fechaEmision);
+
+            // Establecer la fecha de vencimiento a 10 años en el futuro
+            LocalDate fechaVencimiento = fechaEmision.plusYears(10);
+            dni.setFechavencimiento(fechaVencimiento);
+
+            // Asocia el ciudadano con el DNI
+            dni.setFkCiudadano(ciudadano);
+
+            // Agrega el objeto DNI al modelo
+            model.addAttribute("dni", dni);
+        }
         return "pages/DNI";
     }
+
     @PostMapping("/registrar")
-    public String registrarDNI( DNI dni) {
+    public String registrarDNI(@ModelAttribute("dni") DNI dni) {
         dniService.guardar(dni);
         return "redirect:/admin/dashboard";
     }
+
+
+
+
+
+
+
 
 
 }

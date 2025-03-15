@@ -4,22 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Registro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<h2>Formulario de Registro</h2>
-<form th:action="@{/ciudadanos/guardarCiudadano}" method="post" th:object="${ciudadano}">
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" th:field="*{nombres}" required>
-    <input type="text" id="apellido" name="apellido" th:field="*{apellidos}" required>
-    <input type="date" id="fechaNacimiento" name="fechaNacimiento" th:field="*{fechaNacimiento}" required>
-    <input type="text" id="genero" name="genero" th:field="*{genero}" required>
-    <input type="text" id="nombrePadre" name="nombrePadre" th:field="*{nombrePadre}" required>
-    <input type="text" id="nombreMadre" name="nombreMadre" th:field="*{nombreMadre}" required>
+<body class="bg-gray-100 font-sans antialiased">
 
-    <button type="submit">Guardar</button>
-</form>
-<a href="/pages">Volver</a>
+<!-- Contenedor principal -->
+<div class="max-w-4xl mx-auto p-8 bg-white shadow-md rounded-lg mt-10">
+
+    <!-- Título del formulario -->
+    <h2 class="text-2xl font-bold text-center text-gray-800 mb-8">Formulario de Registro</h2>
+
+    <!-- Formulario -->
+    <form th:action="@{/ciudadanos/guardarCiudadano}" method="post" th:object="${ciudadano}">
+
+        <!-- Campo de Nombre -->
+        <div class="mb-4">
+            <label for="nombre" class="block text-gray-700 font-semibold mb-2">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" th:field="*{nombres}" required
+                   class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        </div>
+
+        <!-- Campo de Apellido -->
+        <div class="mb-4">
+            <label for="apellido" class="block text-gray-700 font-semibold mb-2">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" th:field="*{apellidos}" required
+                   class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        </div>
+
+        <!-- Campo de Fecha de Nacimiento -->
+        <div class="mb-4">
+            <label for="fechaNacimiento" class="block text-gray-700 font-semibold mb-2">Fecha de Nacimiento:</label>
+            <input type="date" id="fechaNacimiento" name="fechaNacimiento" th:field="*{fechaNacimiento}" required
+                   class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        </div>
+
+        <!-- Campo de Género -->
+        <div class="mb-4">
+            <label class="block text-gray-700 font-semibold mb-2">Género:</label>
+            <div class="flex items-center">
+                <label for="genero-masculino" class="mr-6">
+                    <input type="radio" id="genero-masculino" name="genero" value="Masculino" th:field="*{genero}" class="mr-2" required> Masculino
+                </label>
+                <label for="genero-femenino">
+                    <input type="radio" id="genero-femenino" name="genero" value="Femenino" th:field="*{genero}" class="mr-2" required> Femenino
+                </label>
+            </div>
+        </div>
+
+        <!-- Campo de Nombre del Padre -->
+        <div class="mb-4">
+            <label for="nombrePadre" class="block text-gray-700 font-semibold mb-2">Nombre del Padre:</label>
+            <input type="text" id="nombrePadre" name="nombrePadre" th:field="*{nombrePadre}" required
+                   class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        </div>
+
+        <!-- Campo de Nombre de la Madre -->
+        <div class="mb-4">
+            <label for="nombreMadre" class="block text-gray-700 font-semibold mb-2">Nombre de la Madre:</label>
+            <input type="text" id="nombreMadre" name="nombreMadre" th:field="*{nombreMadre}" required
+                   class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        </div>
+
+        <!-- Botón de Enviar -->
+        <div class="mb-4 text-center">
+            <button type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                Guardar
+            </button>
+        </div>
+
+    </form>
+
+    <!-- Enlace de regreso -->
+    <div class="mt-4 text-center">
+        <a href="/pages" class="text-blue-600 hover:text-blue-800">Volver</a>
+    </div>
+
+</div>
+
 </body>
 </html>
-
-

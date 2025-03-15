@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class DNIService {
@@ -34,6 +35,19 @@ public class DNIService {
 
     public void eliminar(Long id) {
         dniRepository.deleteById(id);
+    }
+
+
+    public String generateRandomCedula() {
+        Random random = new Random();
+        StringBuilder cedula = new StringBuilder();
+
+        // Generar 10 dígitos aleatorios
+        for (int i = 0; i < 10; i++) {
+            cedula.append(random.nextInt(10)); // Añade un número aleatorio entre 0 y 9
+        }
+
+        return cedula.toString();
     }
 
 

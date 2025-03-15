@@ -3,16 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <!-- Enlace a la hoja de estilos de Tailwind (puedes agregarlo en tu proyecto o usar un CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<div>
-    <h1>LOGIN</h1>
+<body class="bg-gray-100 font-sans antialiased flex items-center justify-center min-h-screen">
+<div class="w-full max-w-sm bg-white p-8 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold text-center mb-6 text-gray-700">LOGIN</h1>
     <form th:action="@{/login}" method="post" th:object="${login}">
-        <input type="text" name="username" placeholder="username" th:field="*{username}" required>
-        <input type="password" name="password" placeholder="password" th:field="*{password}" required>
-        <button type="submit">Login</button>
+        <div class="mb-4">
+            <label for="username" class="block text-sm font-medium text-gray-600">Nombre de usuario</label>
+            <input type="text" id="username" name="username" placeholder="Ingresa tu nombre de usuario"
+                   th:field="*{username}" required
+                   class="w-full px-4 py-2 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        </div>
+        <div class="mb-6">
+            <label for="password" class="block text-sm font-medium text-gray-600">Contraseña</label>
+            <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña"
+                   th:field="*{password}" required
+                   class="w-full px-4 py-2 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        </div>
+        <button type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+            Iniciar sesión
+        </button>
     </form>
-    <a>No tienes cuenta? <a th:href="@{/register}">Registrate</a></a>
+    <p class="mt-4 text-center text-gray-600">
+        ¿No tienes cuenta?
+        <a th:href="@{/register}" class="text-blue-600 hover:underline">Regístrate aquí</a>
+    </p>
 </div>
 </body>
 </html>

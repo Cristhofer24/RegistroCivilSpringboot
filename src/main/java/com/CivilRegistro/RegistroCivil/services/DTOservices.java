@@ -14,19 +14,32 @@ public class DTOservices {
     @Autowired
     private DNIRepository dniRepository;
 
-    public DTODniCiudadano buscarinformacion(String cedula) {
-        List<Object[]> datos = dniRepository.getDniByCedula(cedula);
 
-        if (!datos.isEmpty()) {
-            return extraerInformacion(datos.get(0));
+    public List<DTODniCiudadano> GetAllInformacionCiudadano() {
+        // Obtienes todos los registros desde el repositorio
+        List<Object[]> datos = dniRepository.getall();
+
+        // Lista para almacenar los ciudadanos procesados
+        List<DTODniCiudadano> ciudadanos = new ArrayList<>();
+
+        // Si la lista de datos no está vacía, procesamos cada registro
+        for (Object[] registro : datos) {
+            // Extraemos la información y la agregamos a la lista
+            ciudadanos.add(extraerInformacion(registro));
         }
-        return null;
+
+        return ciudadanos;  // Retornamos la lista de ciudadanos
     }
 
 
-    public List<DTODniCiudadano> GetAllInformacion() {
+
+    public List<DTODniCiudadano> GetAllInformacion(String cedula) {
         // Obtienes todos los registros desde el repositorio
-        List<Object[]> datos = dniRepository.getall();
+        List<Object[]> datos = dniRepository.getDniByCedula(cedula);
+
+        if(cedula==null || cedula.isEmpty()){
+           datos = dniRepository.getall();
+        }
 
         // Lista para almacenar los ciudadanos procesados
         List<DTODniCiudadano> ciudadanos = new ArrayList<>();
@@ -59,16 +72,18 @@ public class DTOservices {
                 informacion.setApellidos((String) registros[2]);
             }
 
+
+            // Otras propiedades de la entidad
+            if (registros[3] instanceof String) {
+                informacion.setGenero((String) registros[3]);
+            }
+
             // Verificamos si es una fecha válida antes de hacer el cast
-            if (registros.length > 3 && registros[3] instanceof java.sql.Date) {
-                java.sql.Date fechaNacimiento = (java.sql.Date) registros[3];
+            if (registros.length > 4 && registros[4] instanceof java.sql.Date) {
+                java.sql.Date fechaNacimiento = (java.sql.Date) registros[4];
                 informacion.setFechaNacimiento(fechaNacimiento.toLocalDate());  // Convertimos a LocalDate
             }
 
-            // Otras propiedades de la entidad
-            if (registros[4] instanceof String) {
-                informacion.setGenero((String) registros[4]);
-            }
 
             if (registros[5] instanceof String) {
                 informacion.setNombrePadre((String) registros[5]);
