@@ -19,9 +19,6 @@ public class CiudadanoController {
     @GetMapping
     public String registrarCiudadano(Model model) {
 
-        List<Ciudadano> ciudadanos = ciudadanoService.obtenerTodos();
-        model.addAttribute("ciudadanos", ciudadanos);
-
         model.addAttribute("ciudadano", new Ciudadano());
         return "pages/formulario";
     }

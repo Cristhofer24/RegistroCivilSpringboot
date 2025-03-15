@@ -21,7 +21,7 @@ public class Ciudadano {
     private String nombreMadre;
 
     /*Relacion entre Ciudadano y DNI*/
-    @OneToMany(mappedBy = "fkCiudadano")
+    @OneToOne(mappedBy = "fkCiudadano")
     private List<DNI> dni;
 
     public Long getCiudadanoId() {

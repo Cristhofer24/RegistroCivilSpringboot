@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+</head>
+<body>
+<h2>Formulario de Registro</h2>
+<form th:action="@{/ciudadanos/guardarCiudadano}" method="post" th:object="${ciudadano}">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" th:field="*{nombres}" required>
+    <input type="text" id="apellido" name="apellido" th:field="*{apellidos}" required>
+    <input type="date" id="fechaNacimiento" name="fechaNacimiento" th:field="*{fechaNacimiento}" required>
+    <input type="text" id="genero" name="genero" th:field="*{genero}" required>
+    <input type="text" id="nombrePadre" name="nombrePadre" th:field="*{nombrePadre}" required>
+    <input type="text" id="nombreMadre" name="nombreMadre" th:field="*{nombreMadre}" required>
+
+    <button type="submit">Guardar</button>
+</form>
+<a href="/pages">Volver</a>
+</body>
+</html>
+
+

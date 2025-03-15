@@ -35,7 +35,4 @@ public class DNIService {
     public void eliminar(Long id) {
         dniRepository.deleteById(id);
     }
-
-
-
 }

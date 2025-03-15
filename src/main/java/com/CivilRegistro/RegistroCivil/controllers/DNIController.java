@@ -17,47 +17,15 @@ public class DNIController {
     private DNIService dniService;
 
     @GetMapping
-    public String listarDNI(Model model) {
-        List<DNI> dnis = dniService.obtenerTodos();
-        model.addAttribute("dnis", dnis);
-        return "dni/lista";
-    }
-
-    @GetMapping("/{id}")
-    public String obtenerDNI(@PathVariable Long id, Model model) {
-        DNI dni = dniService.obtenerPorId(id);
-        model.addAttribute("dni", dni);
-        return "dni/detalle";
-    }
-
-    @GetMapping("/nuevo")
-    public String mostrarFormularioRegistro(Model model) {
+    public String registroDNI(Model model) {
         model.addAttribute("dni", new DNI());
-        return "dni/formulario";
+        return "pages/DNI";
     }
-
-    @PostMapping
-    public String registrarDNI(@ModelAttribute DNI dni) {
+    @PostMapping("/registrar")
+    public String registrarDNI( DNI dni) {
         dniService.guardar(dni);
-        return "redirect:/dni";
+        return "redirect:/admin/dashboard";
     }
 
-    @GetMapping("/editar/{id}")
-    public String mostrarFormularioEdicion(@PathVariable Long id, Model model) {
-        DNI dni = dniService.obtenerPorId(id);
-        model.addAttribute("dni", dni);
-        return "dni/formulario";
-    }
 
-    @PostMapping("/actualizar/{id}")
-    public String actualizarDNI(@PathVariable Long id, @ModelAttribute DNI dni) {
-        dniService.actualizar(id, dni);
-        return "redirect:/dni";
-    }
-
-    @GetMapping("/eliminar/{id}")
-    public String eliminarDNI(@PathVariable Long id) {
-        dniService.eliminar(id);
-        return "redirect:/dni";
-    }
 }

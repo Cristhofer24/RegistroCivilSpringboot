@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Ciudadanos</title>
+</head>
+<body>
+<h1>Lista de Ciudadanos</h1>
+<a href="/ciudadanos/nuevo">Registrar Nuevo Ciudadano</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ciudadano : ${ciudadanos}">
+        <td th:text="${ciudadano.ciudadanoId}"></td>
+        <td th:text="${ciudadano.nombres}"></td>
+        <td th:text="${ciudadano.apellidos}"></td>
+        <td>
+            <a th:href="@{/ciudadanos/{id}(id=${ciudadano.ciudadanoId})}">Ver</a>
+            <a th:href="@{/ciudadanos/editar/{id}(id=${ciudadano.ciudadanoId})}">Editar</a>
+            <a th:href="@{/ciudadanos/eliminar/{id}(id=${ciudadano.ciudadanoId})}" onclick="return confirm('¿Estás seguro?')">Eliminar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

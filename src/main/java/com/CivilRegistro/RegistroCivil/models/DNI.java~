@@ -21,7 +21,7 @@ public class DNI {
 
      /*Recacion de uno a varios con el ciudadano*/
 
-    @ManyToOne
+    @OneToMany
     @JoinColumn(name= "FK_ciudadano")
     private Ciudadano fkCiudadano;
 

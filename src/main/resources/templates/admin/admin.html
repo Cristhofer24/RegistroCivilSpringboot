@@ -2,14 +2,81 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Interfaz Administrador</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-<h1>Bienvenido a la intefaz de Administrador</h1>
+<h1>Bienvenido a la interfaz de Administrador</h1>
+
+<!-- Tabla de Ciudadanos -->
+<h2>Ciudadanos Registrados</h2>
+
+<a th:href="@{/ciudadanos}" >Registrar Nuevo Ciudadano</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Fecha de Nacimiento</th>
+        <th>Género</th>
+        <th>Nombre del Padre</th>
+        <th>Nombre de la Madre</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ciudadano : ${ciudadanos}">
+        <td th:text="${ciudadano.ciudadanoId}"></td>
+        <td th:text="${ciudadano.nombres}"></td>
+        <td th:text="${ciudadano.apellidos}"></td>
+        <td th:text="${ciudadano.fechaNacimiento}"></td>
+        <td th:text="${ciudadano.genero}"></td>
+        <td th:text="${ciudadano.nombrePadre}"></td>
+        <td th:text="${ciudadano.nombreMadre}"></td>
+        <td>
+            <a th:href="@{/editarCiudadano/{id}(id=${ciudadano.ciudadanoId})}">Editar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Tabla de DNIs -->
+<h2>DNIs Registrados</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Cedula</th>
+        <th>Estado Civil</th>
+        <th>Fecha de Emisión</th>
+        <th>Fecha de Vencimiento</th>
+        <th>Ciudadano</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="dni : ${dnis}">
+        <td th:text="${dni.dniId}"></td>
+        <td th:text="${dni.cedula}"></td>
+        <td th:text="${dni.estadoCivil}"></td>
+        <td th:text="${dni.fechaemision}"></td>
+        <td th:text="${dni.fechavencimiento}"></td>
+        <td th:text="${dni.fkCiudadano.nombres} + ' ' + ${dni.fkCiudadano.apellidos}"></td>
+        <td>
+            <a th:href="@{/editarDni/{id}(id=${dni.dniId})}">Editar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Formulario de Cerrar Sesión -->
 <form th:action="@{/logout}" method="post" id="logout-form">
     <button type="submit" class="hover:text-gray-200 transition-colors focus:outline-none">
         Cerrar Sesión
     </button>
 </form>
+
 </body>
 </html>

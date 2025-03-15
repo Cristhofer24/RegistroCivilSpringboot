@@ -15,7 +15,7 @@ public class ConfigSecurity {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http,SuceesLogin sucesesLogin) throws Exception {
       http.authorizeHttpRequests(auth -> auth
-              .requestMatchers("/login","/register","/registro").permitAll()
+              .requestMatchers("/login","/register","/registro","/**").permitAll()
               .anyRequest().authenticated()
       ).formLogin(form -> form
               .loginPage("/login")

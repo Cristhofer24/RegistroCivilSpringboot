@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:tipe="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar DNI</title>
+</head>
+<body>
+<h1>Formulario para Registrar un DNI</h1>
+
+<form th:action="@{/dni/registrar}" method="post" th:object="${dni}">
+    <!-- Estado Civil -->
+    <label for="estadoCivil">Estado Civil:</label>
+    <input type="text" id="estadoCivil" name="estadoCivil" required>
+    <br><br>
+
+    <!-- Cédula -->
+    <label for="cedula">Cédula:</label>
+    <input type="text" id="cedula" name="cedula" required>
+    <br><br>
+
+    <!-- Fecha de Emisión -->
+    <label for="fechaemision">Fecha de Emisión:</label>
+    <input type="date" id="fechaemision" name="fechaemision" required>
+    <br><br>
+
+    <!-- Fecha de Vencimiento -->
+    <label for="fechavencimiento">Fecha de Vencimiento:</label>
+    <input type="date" id="fechavencimiento" name="fechavencimiento" required>
+    <br><br>
+
+    <!-- Ciudadano -->
+    <label for="fkCiudadano">Seleccionar Ciudadano:</label>
+    <input type=text" id="fkCiudadano" name="fkCiudadano">
+    <!--<select id="fkCiudadano" name="fkCiudadano" required>
+        <option th:each="ciudadano : ${ciudadanos}"
+                th:value="${ciudadano.ciudadanoId}"
+                th:text="${ciudadano.nombres + ' ' + ciudadano.apellidos}"></option>
+    </select>-->
+    <br><br>
+
+
+    <!-- Botón para Registrar -->
+    <button type="submit">Registrar DNI</button>
+</form>
+
+</body>
+</html>

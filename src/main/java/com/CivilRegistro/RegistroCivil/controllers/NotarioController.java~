@@ -1,4 +1,4 @@
-package com.CivilRegistro.RegistroCivil.controller;
+package com.CivilRegistro.RegistroCivil.controllers;
 
 import com.CivilRegistro.RegistroCivil.models.Notario;
 import com.CivilRegistro.RegistroCivil.services.NotarioService;

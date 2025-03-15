@@ -35,4 +35,7 @@ public class CiudadanoService {
     public void eliminar(Long id) {
         ciudadanoRepository.deleteById(id);
     }
+
+
+
 }
