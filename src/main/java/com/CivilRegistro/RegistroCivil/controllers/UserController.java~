@@ -18,7 +18,7 @@ public class UserController {
 
     @GetMapping("/panel")
     public String panel(Model model) {
-        List<DTODniCiudadano> ciudadanos = dtoServices.GetAllInformacion();
+        List<Object[]> ciudadanos = dtoServices.GetAllInformacion();
         model.addAttribute("ciudadanos", ciudadanos);
         return "user/user";
     }
