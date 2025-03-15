@@ -1,0 +1,4 @@
+package com.CivilRegistro.RegistroCivil.controller;
+
+public class RegistroController {
+}
